@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails Consultation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <th:block th:replace="fragments/header :: body"></th:block>
+
+    <div class="container mt-4">
+        <h2>Détails de la Consultation
+            <!-- Small Edit Button -->
+            <a th:href="@{'/consultations/edit/' + ${consultation.id}}" class="btn btn-warning btn-sm ms-3">
+                <i class="fas fa-edit"></i> Modifier
+            </a>
+        </h2>
+
+        <table class="table">
+            <tr><th>ID</th><td th:text="${consultation.id}"></td></tr>
+            <tr><th>Patient</th><td th:text="${consultation.patient.name}"></td></tr>
+            <tr><th>Email</th><td th:text="${consultation.patient.email}"></td></tr>
+            <tr><th>Téléphone</th><td th:text="${consultation.patient.phone}"></td></tr>
+            <tr><th>Motif</th><td th:text="${consultation.motif}"></td></tr>
+            <tr><th>Description</th><td th:text="${consultation.description}"></td></tr>
+            <tr><th>Date</th><td th:text="${#temporals.format(consultation.dateConsultation, 'dd/MM/yyyy HH:mm')}"></td></tr>
+        </table>
+        
+        <a href="/consultations" class="btn btn-primary">Retour</a>
+    </div>
+    <th:block th:replace="fragments/footer :: body"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
